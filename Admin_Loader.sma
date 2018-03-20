@@ -4,10 +4,13 @@
 
 #define CUSTOM_DEF_FLAG
 	// Добавляет квар amx_default_access
+	// Added cvar amx_default_access
 
 // #define USE_DEFAULT_AMXX_FORWARD
 	// Если используете fakemeta, не рекомендуется включать
 	// Если есть ReAPI , то будет использоваться он, независимо от этой настройки
+	// If you use fakemeta, do not turn it on
+	// If there is ReAPI, then it will be used, regardless of this setting
 
 #if !defined _reapi_included && !defined USE_DEFAULT_AMXX_FORWARD
 	#include <fakemeta>
@@ -163,7 +166,8 @@ public SQL_Handler(failstate, Handle:query, err[], errcode, dt[], datasize)
 
 	if(!SQL_NumResults(query))
 	{
-		log_amx("Администраторы для сервера %s не найдены!", g_szServerData[IP]);
+		log_amx("Администраторы для сервера %s не найдены!", g_szServerData[IP]); // This is original from Russian language
+		/* log_amx("Administrators for the server %s not found!", g_szServerData[IP]); // This is English Version */
 		return;
 	}
 	
@@ -196,8 +200,10 @@ public SQL_Handler(failstate, Handle:query, err[], errcode, dt[], datasize)
 
 	new szText[128];
 	if(iLoadAdmins == 1)
-		formatex(szText, charsmax(szText), "Загружен 1 администратор из MySQL");
-	else 	formatex(szText, charsmax(szText), "Загружено %d администраторов из MySQL", iLoadAdmins);
+		formatex(szText, charsmax(szText), "Загружен 1 администратор из MySQL"); // This is original from Russian language
+		/*formatex(szText, charsmax(szText), "Uploaded 1 Administrator from MySQL"); // This is English version */
+	else 	formatex(szText, charsmax(szText), "Загружено %d администраторов из MySQL", iLoadAdmins); // This is original from Russian language
+	/*else 	formatex(szText, charsmax(szText), "Uploaded %d Administators from MySQL", iLoadAdmins); // This is English version */
 
 	if(dt[0] != 0) console_print(dt[0], szText);
 	log_amx(szText);
@@ -553,5 +559,6 @@ LoadBackUp()
 		}
 	}
 	fclose(fp);
-	log_amx("[Admin Loader] Загружен %d %s из BackUP users.ini", load, load == 1 ? "администратор" : "администраторов");
+	log_amx("[Admin Loader] Загружен %d %s из BackUP users.ini", load, load == 1 ? "администратор" : "администраторов"); // This is original from Russian language
+	/*log_amx("[Admin Loader] Uploaded %d %s from BackUP users.ini", load, load == 1 ? "admin" : "admins"); // This is English version */
 }
