@@ -167,7 +167,7 @@ public SQL_Handler(failstate, Handle:query, err[], errcode, dt[], datasize)
 	if(!SQL_NumResults(query))
 	{
 		log_amx("Администраторы для сервера %s не найдены!", g_szServerData[IP]); // Here is Original source
-		/*log_amx("Administrators for the server %s not found!", g_szServerData[IP]); // This is english version */
+		/*log_amx("Administrators for the server %s not found!", g_szServerData[IP]); // This is english version*/
 		return;
 	}
 	
