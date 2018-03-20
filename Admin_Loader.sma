@@ -4,10 +4,13 @@
 
 #define CUSTOM_DEF_FLAG
 	// Добавляет квар amx_default_access
+	// Added cvar amx_default_access
 
 // #define USE_DEFAULT_AMXX_FORWARD
 	// Если используете fakemeta, не рекомендуется включать
 	// Если есть ReAPI , то будет использоваться он, независимо от этой настройки
+	// If you use fakemeta, do not turn it on
+	// If there is ReAPI, then it will be used, regardless of this setting
 
 #if !defined _reapi_included && !defined USE_DEFAULT_AMXX_FORWARD
 	#include <fakemeta>
@@ -163,7 +166,8 @@ public SQL_Handler(failstate, Handle:query, err[], errcode, dt[], datasize)
 
 	if(!SQL_NumResults(query))
 	{
-		log_amx("Администраторы для сервера %s не найдены!", g_szServerData[IP]);
+		log_amx("Администраторы для сервера %s не найдены!", g_szServerData[IP]); // Here is Original source
+		/*log_amx("Administrators for the server %s not found!", g_szServerData[IP]); // This is english version*/
 		return;
 	}
 	
@@ -196,8 +200,10 @@ public SQL_Handler(failstate, Handle:query, err[], errcode, dt[], datasize)
 
 	new szText[128];
 	if(iLoadAdmins == 1)
-		formatex(szText, charsmax(szText), "Загружен 1 администратор из MySQL");
-	else 	formatex(szText, charsmax(szText), "Загружено %d администраторов из MySQL", iLoadAdmins);
+		formatex(szText, charsmax(szText), "Загружен 1 администратор из MySQL"); // Here is original source
+		/*formatex(szText, charsmax(szText), "Uploaded 1 Administrator from MySQL"); // This is english version
+	else 	formatex(szText, charsmax(szText), "Загружено %d администраторов из MySQL", iLoadAdmins); // Here is original source
+	/*else	formatex(szText, charsmax(szText), "Uploaded %d Administators from MySQL", iLoadAdmins); // This is english version */
 
 	if(dt[0] != 0) console_print(dt[0], szText);
 	log_amx(szText);
@@ -351,7 +357,7 @@ RegisterSqlCfg()
 	register_cvar("amx_sql_type", "mysql",     FCVAR_PROTECTED);
 }
 
-RegisterFreshBans(fbcfg[])
+RegisterFreshBans(fbcfg[]) // This can work with FreshBans
 {
 	g_iBanSystem = 1;
 	register_cvar("fb_sql_host", "", FCVAR_PROTECTED);
@@ -364,7 +370,7 @@ RegisterFreshBans(fbcfg[])
 	ExecCfg(fbcfg);
 }
 
-RegisterLiteBans(lbcfg[])
+RegisterLiteBans(lbcfg[]) // This can work with LiteBans
 {
 	g_iBanSystem = 2;
 	register_cvar("lb_sql_host", "", FCVAR_PROTECTED);
@@ -553,5 +559,6 @@ LoadBackUp()
 		}
 	}
 	fclose(fp);
-	log_amx("[Admin Loader] Загружен %d %s из BackUP users.ini", load, load == 1 ? "администратор" : "администраторов");
+	log_amx("[Admin Loader] Загружен %d %s из BackUP users.ini", load, load == 1 ? "администратор" : "администраторов"); // Here is original source
+	/*log_amx("[Admin Loader] Uploaded %d %s from BackUP users.ini", load, load == 1 ? "admin" : "admins"); // This is english version */
 }
